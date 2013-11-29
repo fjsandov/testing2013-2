@@ -2,6 +2,18 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+
+<form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+
+    <br>
+  </br>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -11,6 +23,7 @@
       <th><%= model_class.human_attribute_name(:long) %></th>
       <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:image) %></th>
+      <th><%= model_class.human_attribute_name(:address) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -24,6 +37,7 @@
         <td><%= lodge.long %></td>
         <td><%= lodge.category %></td>
         <td><%= lodge.image %></td>
+        <td><%= lodge.address %></td>
         <td><%=l lodge.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

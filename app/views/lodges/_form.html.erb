@@ -1,3 +1,4 @@
+  <div id="map-canvas"></div>
 <%= form_for @lodge, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
@@ -27,6 +28,12 @@
     <%= f.label :image, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :image, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :address, :class => 'text_field' %>
     </div>
   </div>
 

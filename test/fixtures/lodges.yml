@@ -5,9 +5,11 @@ one:
   lat: 1.5
   long: 1.5
   category: MyString
+  image: MyString
 
 two:
   name: MyString
   lat: 1.5
   long: 1.5
   category: MyString
+  image: MyString

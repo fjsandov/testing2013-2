@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129124109) do
+ActiveRecord::Schema.define(version: 20131129133348) do
 
   create_table "comments", force: true do |t|
     t.string   "quality"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20131129124109) do
     t.float    "lat"
     t.float    "long"
     t.string   "category"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
   end
 
 end

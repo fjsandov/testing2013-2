@@ -14,7 +14,27 @@
   <dd><%= @lodge.category %></dd>
   <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
   <dd><%= @lodge.image %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @lodge.address %></dd>
 </dl>
+
+<div class="comments"> 
+  <% @lodge.comments.each do |comment| %>
+
+<div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/s48x48/276701_185094367962_1193477315_q.jpg" alt="...">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">Media heading</h4>
+    <div class="email"> <%= comment.email %> </div>
+      <div class="price"> <%= comment.price %> </div>
+      <div class="quality"> <%= comment.quality %> </div>
+      <div class="message"> <%= comment.message %> </div>
+  </div>
+</div>
+  <% end %>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
