@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  quality: MyString
+  price: 1.5
+  message: MyString
+  email: MyString
+  lodge_id: 
+
+two:
+  quality: MyString
+  price: 1.5
+  message: MyString
+  email: MyString
+  lodge_id: 
