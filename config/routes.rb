@@ -1,6 +1,8 @@
 Mochileros::Application.routes.draw do
-  resources :lodges
-
+  resources :lodges do
+    resources :comments
+  end
+  
   get "home/index"
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

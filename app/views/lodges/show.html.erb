@@ -18,22 +18,47 @@
   <dd><%= @lodge.address %></dd>
 </dl>
 
-<div class="comments"> 
-  <% @lodge.comments.each do |comment| %>
 
-<div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/s48x48/276701_185094367962_1193477315_q.jpg" alt="...">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <div class="email"> <%= comment.email %> </div>
+<h3>¿Ya has visitado este lugar?</h3>
+<%= form_for([@lodge, @lodge.comments.build]) do |f| %>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.label :email %>
+      <%= f.email_field :email, :required => true, :class => 'span12' %>
+      <div class="row-fluid">
+        <div class="span6">
+          <%= f.label :price %>
+          <%= f.number_field :price, :class => 'span12' %>
+        </div>
+        <div class="span6">
+          <%= f.label :quality %>
+          <%= f.number_field :quality, :class => 'span12' %>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <%= f.label :message %>
+      <%= f.text_area :message, :class => 'span12', :rows => 4 %>
+    </div>
+  </div>
+      <%= f.submit %>
+<% end %>
+
+<div class="comments"> 
+<% @lodge.comments.each do |comment| %>
+  <% next if comment.new_record? %>
+  <div class="media">
+    <div class="pull-left" href="#">
+      <%= gravatar_tag(comment.email || "") %>
+    </div>
+    <div class="media-body">
+      <div class="media-heading"> <%= comment.email %> </div>
       <div class="price"> <%= comment.price %> </div>
       <div class="quality"> <%= comment.quality %> </div>
       <div class="message"> <%= comment.message %> </div>
+    </div>
   </div>
-</div>
-  <% end %>
+<% end %>
 </div>
 
 <div class="form-actions">
