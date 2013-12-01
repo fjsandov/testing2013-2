@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  quality: MyString
+  email: ing.cmolina@gmail.com
+  quality: 4
   price: 1.5
-  message: MyString
-  email: MyString
+  message: Un buen lugar para pasar la noche
   lodge_id: 
 
 two:
-  quality: MyString
-  price: 1.5
-  message: MyString
-  email: MyString
+  email: cplopez@uc.cl
+  quality: 2
+  price: 4
+  message: Harto mala la atención pero piola para pasar la noche
   lodge_id: 

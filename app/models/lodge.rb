@@ -1,5 +1,5 @@
 class Lodge < ActiveRecord::Base
-  has_many :comments, order: 'created_at desc'
+  has_many :comments, -> { order('created_at') }
 
   def average_quality
     avg_quality = 0
