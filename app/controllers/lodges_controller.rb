@@ -5,6 +5,19 @@ class LodgesController < ApplicationController
   # GET /lodges.json
   def index
     @lodges = Lodge.all
+
+    @filter= Array.new
+
+    @lodges.each do |p|
+        if p.name==params[:search]
+          @filter<<p
+        end
+      end
+      
+      if @filter.count==0
+        @filter=@lodges
+      end
+
   end
 
   # GET /lodges/1

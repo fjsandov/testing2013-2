@@ -1,6 +1,15 @@
 class Lodge < ActiveRecord::Base
   has_many :comments, -> { order('created_at') }
 
+  validates :name, :presence => true
+  validates :lat, :presence => true
+  validates :long, :presence => true
+  validates :category, :presence => true
+  validates :image, :presence => true
+  validates :address, :presence => true
+
+  validates :name, :uniqueness => true
+
   def average_quality
     avg_quality = 0
     count = 0
