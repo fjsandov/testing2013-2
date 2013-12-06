@@ -1,5 +1,5 @@
 class Lodge < ActiveRecord::Base
-  has_many :comments, -> { order('created_at') }
+  has_many :comments, -> { order('created_at DESC') }
 
   validates :name, :presence => true
   validates :lat, :presence => true
