@@ -8,8 +8,8 @@ one:
   image: MyString
 
 two:
-  name: MyString
+  name: MyString2
   lat: 1.5
   long: 1.5
-  category: MyString
-  image: MyString
+  category: MyString2
+  image: MyString2

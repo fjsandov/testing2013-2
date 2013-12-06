@@ -24,19 +24,19 @@ class LodgeTest < ActiveSupport::TestCase
   end
 
   test 'average_price' do
-    lodge = Lodge.create(name: 'test lodge 1')
-    Comment.create(lodge_id: lodge.id, quality: 3, price: 2)
-    Comment.create(lodge_id: lodge.id, quality: 5, price: 3)
-    Comment.create(lodge_id: lodge.id, quality: 5, price: 4)
+    lodge = Lodge.create(name: 'test lodge 1', lat: 75, long: 75, category: 'hotel', image: 'image', address: 'address 1')
+    Comment.create(lodge_id: lodge.id, quality: 3, price: 2, message: 'message 1', email: 'fjsandov@uc.cl')
+    Comment.create(lodge_id: lodge.id, quality: 5, price: 3, message: 'message 1', email: 'fjsandov@uc.cl')
+    Comment.create(lodge_id: lodge.id, quality: 5, price: 4, message: 'message 1', email: 'fjsandov@uc.cl')
     avg_price = (((2+3+4)/3.to_f)*100).round / 100.to_f
     assert lodge.average_price == avg_price, "average price must be #{avg_price} and is #{lodge.average_price}"
   end
 
   test 'average_quality' do
-    lodge = Lodge.create(name: 'test lodge 2')
-    Comment.create(lodge_id: lodge.id, quality: 3, price: 2)
-    Comment.create(lodge_id: lodge.id, quality: 5, price: 3)
-    Comment.create(lodge_id: lodge.id, quality: 5, price: 4)
+    lodge = Lodge.create(name: 'test lodge 2', lat: 75, long: 75, category: 'hotel', image: 'image', address: 'address 1')
+    Comment.create(lodge_id: lodge.id, quality: 3, price: 2, message: 'message 1', email: 'fjsandov@uc.cl')
+    Comment.create(lodge_id: lodge.id, quality: 5, price: 3, message: 'message 1', email: 'fjsandov@uc.cl')
+    Comment.create(lodge_id: lodge.id, quality: 5, price: 4, message: 'message 1', email: 'fjsandov@uc.cl')
     avg_quality = (((3+5+5)/3.to_f)*100).round / 100.to_f
     assert lodge.average_quality == avg_quality, "average quality must be #{avg_quality} and is #{lodge.average_quality}"
   end
