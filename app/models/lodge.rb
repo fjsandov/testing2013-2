@@ -10,6 +10,10 @@ class Lodge < ActiveRecord::Base
 
   validates :name, :uniqueness => true
 
+  def self.all_filter_by_name(name)
+    where('name LIKE ?' , "%#{name}%")
+  end
+
   def average_quality
     avg_quality = 0
     count = 0

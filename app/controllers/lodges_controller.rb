@@ -1,41 +1,24 @@
 class LodgesController < ApplicationController
   before_action :set_lodge, only: [:show, :edit, :update, :destroy]
 
-  # GET /lodges
-  # GET /lodges.json
   def index
-    @lodges = Lodge.all
-
-    @filter= Array.new
-
-    @lodges.each do |p|
-        if p.name==params[:search]
-          @filter<<p
-        end
-      end
-      
-      if @filter.count==0
-        @filter=@lodges
-      end
-
+    search = params[:search]
+    @lodges = Lodge.all_filter_by_name(search)
+    unless search.blank?
+      @search_message = 'Results for: '+search
+    end
   end
 
-  # GET /lodges/1
-  # GET /lodges/1.json
   def show
   end
 
-  # GET /lodges/new
   def new
     @lodge = Lodge.new
   end
 
-  # GET /lodges/1/edit
   def edit
   end
 
-  # POST /lodges
-  # POST /lodges.json
   def create
     @lodge = Lodge.new(lodge_params)
 
@@ -50,8 +33,6 @@ class LodgesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lodges/1
-  # PATCH/PUT /lodges/1.json
   def update
     respond_to do |format|
       if @lodge.update(lodge_params)
@@ -64,8 +45,6 @@ class LodgesController < ApplicationController
     end
   end
 
-  # DELETE /lodges/1
-  # DELETE /lodges/1.json
   def destroy
     @lodge.destroy
     respond_to do |format|
