@@ -73,14 +73,14 @@ class LodgesControllerTest < ActionController::TestCase
   
   test 'search_lodge' do
     begin
-      search_string = '1'
+      search_string = '2'
       driver = Selenium::WebDriver.for :firefox
 
       # Cargo la vista de lodges
       driver.get 'http://0.0.0.0:3000/lodges/'
 
       # Obtengo los campos a llenar
-      search = driver.find_element :name => 'search'
+      search = driver.find_element :id => 'search-input'
 
       # Ingreso los datos en el formulario
       search.send_keys search_string
@@ -94,7 +94,7 @@ class LodgesControllerTest < ActionController::TestCase
       result_msg = wait.until {
         driver.find_element :id => 'result-message'
       }
-      search = driver.find_element :name => 'search'
+      search = driver.find_element :id => 'search-input'
 
       # Verificar existencia y el correcto contenido del mensaje de resultados
       assert_not_nil result_msg, 'No se muestra el mensaje de resultados'
