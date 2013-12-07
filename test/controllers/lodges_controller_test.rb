@@ -1,49 +1,37 @@
 require 'test_helper'
+require 'selenium-webdriver'
 
 class LodgesControllerTest < ActionController::TestCase
-  setup do
-    @lodge = lodges(:one)
-  end
+  test 'search_lodge' do
+    begin
+      search_string = '1'
+      driver = Selenium::WebDriver.for :firefox
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:lodges)
-  end
+      # Cargo la vista de lodges
+      driver.get 'http://0.0.0.0:3000/lodges/'
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+      # Obtengo los campos a llenar
+      search = driver.find_element :name => 'search'
 
-  test "should create lodge" do
-    assert_difference('Lodge.count') do
-      post :create, lodge: { category: @lodge.category, image: @lodge.image, lat: @lodge.lat, long: @lodge.long, name: @lodge.name }
+      # Ingreso los datos en el formulario
+      search.send_keys search_string
+
+      # Envio el formulario
+      search.submit
+
+      wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+
+      # Espero a que carge la página y obtengo los elementos
+      result_msg = wait.until {
+        driver.find_element :id => 'result-message'
+      }
+      search = driver.find_element :name => 'search'
+
+      # Verificar existencia y el correcto contenido del mensaje de resultados
+      assert_not_nil result_msg, 'No se muestra el mensaje de resultados'
+      assert_equal result_msg.text, "Results for: #{search_string}"
+    ensure
+      driver.quit
     end
-
-    assert_redirected_to lodge_path(assigns(:lodge))
-  end
-
-  test "should show lodge" do
-    get :show, id: @lodge
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @lodge
-    assert_response :success
-  end
-
-  test "should update lodge" do
-    patch :update, id: @lodge, lodge: { category: @lodge.category, image: @lodge.image, lat: @lodge.lat, long: @lodge.long, name: @lodge.name }
-    assert_redirected_to lodge_path(assigns(:lodge))
-  end
-
-  test "should destroy lodge" do
-    assert_difference('Lodge.count', -1) do
-      delete :destroy, id: @lodge
-    end
-
-    assert_redirected_to lodges_path
   end
 end
